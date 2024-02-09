@@ -29,7 +29,7 @@ def display_media():
                 media_id is like an unique identifier for each anime available. This id is required to fetch up more details about that anime.
     """
 
-    with open("tests/zoro.json", "r") as file:
+    with open("jsons/zoro.json", "r") as file:
         results = json.load(file)["results"]
 
     for i, j in enumerate(results):
@@ -60,11 +60,11 @@ def get_media_info(id):
 
     results = requests.get(f"https://anime-sensei-api.vercel.app/anime/gogoanime/info/{id}").json()
     
-    with open("tests/zoro_info.json", "w") as file:
+    with open("jsons/zoro_info.json", "w") as file:
         json.dump(results, file)
 
     print("Movie info retrived!")
-    with open("tests/zoro_info.json", "r") as file:
+    with open("jsons/zoro_info.json", "r") as file:
         media_info = json.load(file)
     
     # Printing media information
@@ -95,10 +95,10 @@ def get_media_link(ep_id):
 
     request = requests.get(f"https://anime-sensei-api.vercel.app/anime/gogoanime/watch/{ep_id}?server=gogocdn")
 
-    with open("tests/zoro_link.json", "w") as file:
+    with open("jsons/zoro_link.json", "w") as file:
         json.dump(request.json(), file)
     
-    with open("tests/zoro_link.json", "r") as file:
+    with open("jsons/zoro_link.json", "r") as file:
         media_links = json.load(file)
     
     webbrowser.open(f"https://dramalama-video-player.vercel.app/?link={media_links["sources"][3]["url"]}")
